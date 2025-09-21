@@ -2,6 +2,7 @@ import { defineConfig, PluginOption } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import path from 'node:path';
+import { searchForWorkspaceRoot } from 'vite';
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -20,13 +21,16 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
-  // server: {
-  //   proxy: {
-  //     '^/api/v': {
-  //       target: 'http://127.0.0.1:3000',
-  //       changeOrigin: true,
-  //       rewrite: (path) => path.replace(/^\/api\/v/, '/api'),
-  //     },
-  //   },
-  // },
+  server: {
+    // proxy: {
+    //   '^/api/v': {
+    //     target: 'http://127.0.0.1:3000',
+    //     changeOrigin: true,
+    //     rewrite: (path) => path.replace(/^\/api\/v/, '/api'),
+    //   },
+    // },
+    fs: {
+      allow: [searchForWorkspaceRoot(process.cwd()), '../../common/temp/node_modules'],
+    },
+  },
 });
