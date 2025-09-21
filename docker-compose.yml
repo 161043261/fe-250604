@@ -1,19 +1,17 @@
 services:
-  # docker-compose up -d mysql_service
-  mysql_service:
-    image: mysql:8.4
-    command: --mysql-native-password=ON
-    container_name: mysql_container
-    hostname: mysql_host
+  # docker compose up mysql -d
+  mysql:
+    image: 'mysql:latest'
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d
     ports:
-      - "3306:3306"
-    privileged: true
-    restart: always
+      - 3306:3306
     environment:
-      MYSQL_ROOT_PASSWORD: pass # 如果是数字, 则必须加 ""
-      MYSQL_NATIVE_PASSWORD: ON
-      TZ: Asia/Shanghai
-  # docker-compose down mysql_service -v
+      - MYSQL_DATABASE=db0
+      - MYSQL_USER=whoami
+      - MYSQL_PASSWORD=pass
+      - MYSQL_RANDOM_ROOT_PASSWORD="yes"
+  # docker compose down mysql -v
 
   # docker-compose up -d redis_service
   redis_service:

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node ./src/app.js --env-file ./.env",
+    "start": "node ./src/app.js",
     "lint": "eslint --fix --max-warnings=0",
     "format": "prettier --write ./src"
   },
@@ -21,8 +21,8 @@
     "ioredis": "^5.6.0",
     "jsonwebtoken": "^9.0.2",
     "multer": "1.4.5-lts.2",
-    "mysql": "^2.18.1",
-    "uuid": "^11.1.0"
+    "uuid": "^11.1.0",
+    "mysql2": "~3.15.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.23.0",

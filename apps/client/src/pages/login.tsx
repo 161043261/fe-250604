@@ -111,7 +111,7 @@ const Login: React.FC = () => {
   );
 
   return (
-    <div className="h-dvh w-dvw bg-[url('/bg.png')] bg-cover bg-center bg-no-repeat">
+    <div className="h-dvh w-dvw bg-[url('/bg.jpg')] bg-cover bg-center bg-no-repeat">
       <div
         className={`${styles.loginContainer} absolute top-[50%] right-[10%] w-100 translate-y-[-50%] px-7`}
       >

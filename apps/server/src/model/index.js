@@ -1,17 +1,11 @@
-import mysql from "mysql";
+import mysql from "mysql2";
 import fs from "node:fs";
 import path from "node:path";
 
-//! mysql:8.4
-// docker exec -it mysql_container bash
-// docker logs --follow mysql_container
-// alter user 'root' identified with mysql_native_password BY 'pass';
-// flush privileges;
-// create database db0;
 let conf = {
-  host: "localhost",
+  host: "127.0.0.1",
   port: 3306,
-  user: "root",
+  user: "whoami",
   password: "pass",
   database: "db0",
 };

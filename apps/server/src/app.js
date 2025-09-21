@@ -1,7 +1,8 @@
 import expressWs from "express-ws";
 import app from "./router/index.js";
 import http from "node:http";
-const port = process.env.PORT ?? 3000;
+
+const port = 3000;
 
 /**
  * @type {{ [email: string]: { ws: any, state: boolean } }}
