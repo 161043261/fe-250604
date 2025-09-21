@@ -5,11 +5,10 @@
 // const secretKey = Array.from(randBytes)
 //   .map((byte) => byte.toString(16).padStart(2, '0'))
 //   .join('');
-const secretKey = '00000000000000000000000000000000';
 
 async function importKey() {
   const encoder = new TextEncoder();
-  const encodedKey: Uint8Array = encoder.encode(secretKey);
+  const encodedKey = encoder.encode(import.meta.env.VITE_SECRET_KEY);
   const importedKey = await crypto.subtle.importKey('raw', encodedKey, { name: 'AES-GCM' }, false, [
     'encrypt', // 可以加密
     'decrypt', // 可以解密

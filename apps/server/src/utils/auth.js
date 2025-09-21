@@ -4,7 +4,7 @@ import { BaseState } from "./state.js";
 // import crypto from "node:crypto";
 
 // export const secretKey = crypto.randomBytes(16).toString("hex");
-export const secretKey = "00000000000000000000000000000000";
+export const secretKey = process.env.SECRET_KEY;
 
 /**
  *
