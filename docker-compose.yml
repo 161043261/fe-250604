@@ -13,12 +13,12 @@ services:
       - MYSQL_RANDOM_ROOT_PASSWORD="yes"
   # docker compose down mysql -v
 
-  # docker-compose up -d redis_service
-  redis_service:
+  # docker-compose up -d redis
+  redis:
     image: redis:latest
-    container_name: redis_container
-    hostname: redis_host
+    container_name: redis
+    hostname: redis
     ports:
       - "6379:6379"
     restart: always
-  # docker-compose down redis_service -v
+  # docker-compose down redis -v
