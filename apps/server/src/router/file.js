@@ -1,9 +1,9 @@
-import express from "express";
+import { Router } from "express";
 import multer from "multer";
 import { verifyFile, uploadChunk, mergeChunks } from "../service/file.js";
 import auth from "../utils/auth.js";
 
-const router = express.Router();
+const router = Router();
 
 export default function createFileRouter() {
   //! /api/v1/file/verify

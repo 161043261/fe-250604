@@ -1,4 +1,4 @@
-import express from "express";
+import { Router } from "express";
 import auth from "../utils/auth.js";
 import {
   addFriend,
@@ -9,7 +9,7 @@ import {
   findFriendListByEmail,
   updateFriend,
 } from "../service/friend.js";
-const router = express.Router();
+const router = Router();
 
 export default function createFriendRouter() {
   //! /api/v1/friend/email

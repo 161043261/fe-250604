@@ -1,7 +1,7 @@
-import express from "express";
+import { Router } from "express";
 import { login, logout, register, wsPub, updatePwd, updateUserInfo } from "../service/user.js";
 
-const router = express.Router();
+const router = Router();
 
 export default function createUserRouter() {
   //! /api/v1/user/login

@@ -1,8 +1,8 @@
-import express from "express";
+import { Router } from "express";
 import { createRtc, findCurRoomCallers } from "../service/rtc.js";
 import auth from "../utils/auth.js";
 
-const router = express.Router();
+const router = Router();
 
 export default function createRtcRouter() {
   //! /api/v1/rtc/create

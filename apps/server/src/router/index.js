@@ -1,6 +1,6 @@
 import express from "express";
 import expressWs from "express-ws";
-import bodyParser from "body-parser";
+import { json, urlencoded } from "body-parser";
 import createUserRouter from "./user.js";
 import createFriendRouter from "./friend.js";
 import createGroupRouter from "./group.js";
@@ -52,9 +52,8 @@ function staticHandler(req, res, next) {
 }
 
 app.use("/uploads", staticHandler, express.static("uploads"));
-
-app.use(bodyParser.json({ limit: "100mb" }));
-app.use(bodyParser.urlencoded({ limit: "100mb", extended: true }));
+app.use(json({ limit: "100mb" }));
+app.use(urlencoded({ limit: "100mb", extended: true }));
 
 //! /api/v1/user/login
 //! /api/v1/user/logout

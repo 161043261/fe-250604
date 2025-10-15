@@ -1,6 +1,3 @@
-//
-// Reviewed 2025/3/29
-//
 import query from "../utils/query.js";
 import { BaseState } from "../utils/state.js";
 import { resErr, resOk } from "../utils/res.js";

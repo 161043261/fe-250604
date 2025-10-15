@@ -1,4 +1,4 @@
-import express from "express";
+import { Router } from "express";
 import auth from "../utils/auth.js";
 import {
   createGroup,
@@ -9,7 +9,7 @@ import {
   addSelf2group,
   findGroupMembers,
 } from "../service/group.js";
-const router = express.Router();
+const router = Router();
 
 export default function createGroupRouter() {
   //! /api/v1/group/list

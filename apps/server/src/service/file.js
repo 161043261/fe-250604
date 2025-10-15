@@ -2,7 +2,7 @@ import { getFileType } from "../utils/fmt.js";
 import { BaseState, FileState } from "../utils/state.js";
 import { response, resOk, resErr } from "../utils/res.js";
 import { promises as fs, createWriteStream, createReadStream } from "node:fs";
-import path from "node:path";
+import { join } from "node:path";
 
 /**
  *
@@ -16,7 +16,7 @@ export async function verifyFile(req, res) {
   }
   const extName = rawExtName.split(".").at(-1)?.toLowerCase();
   const fileType = getFileType(extName);
-  const chunkDirAbsPath = path.join(process.cwd(), `uploads/${fileType}/${fileHash}`);
+  const chunkDirAbsPath = join(process.cwd(), `uploads/${fileType}/${fileHash}`);
   const fileAbsPath = chunkDirAbsPath + "." + extName;
   const filePath = `uploads/${fileType}/${fileHash}.${extName}`; // relative
   let pendingChunkIdxArr = new Array(chunkCnt).fill(0).map((_val, idx) => idx);
@@ -67,8 +67,8 @@ export async function uploadChunk(req, res) {
 
   const extName = rawExtName.split(".").at(-1)?.toLowerCase();
   const fileType = getFileType(extName);
-  const chunkDirAbsPath = path.join(process.cwd(), `uploads/${fileType}/${fileHash}`);
-  const chunkAbsPath = path.join(chunkDirAbsPath, `chunk-${chunkIdx}`);
+  const chunkDirAbsPath = join(process.cwd(), `uploads/${fileType}/${fileHash}`);
+  const chunkAbsPath = join(chunkDirAbsPath, `chunk-${chunkIdx}`);
 
   try {
     const chunksDirExist = await fs
@@ -106,7 +106,7 @@ export async function mergeChunks(req, res) {
   // fileAbsPath = '/path/to/uploads/image/161043261.jpg'
   // filePath = 'uploads/image/161043261.jpg'
 
-  const chunkDirAbsPath = path.join(process.cwd(), `uploads/${fileType}/${fileHash}`);
+  const chunkDirAbsPath = join(process.cwd(), `uploads/${fileType}/${fileHash}`);
   const fileAbsPath = chunkDirAbsPath + "." + extName;
   const filePath = `uploads/${fileType}/${fileHash}.${extName}`;
 
@@ -130,7 +130,7 @@ export async function mergeChunks(req, res) {
     for (let idx = 0; idx < chunks.length; idx++) {
       const chunkName = chunks[idx];
       const isLastChunk = idx === chunks.length - 1;
-      const chunkAbsPath = path.join(chunkDirAbsPath, chunkName);
+      const chunkAbsPath = join(chunkDirAbsPath, chunkName);
       const readStream = createReadStream(chunkAbsPath);
 
       //////////////////////////////////////////////////

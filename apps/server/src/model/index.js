@@ -1,6 +1,6 @@
-import mysql from "mysql2";
-import fs from "node:fs";
-import path from "node:path";
+import { createPool } from "mysql2";
+import { existsSync, readFileSync } from "node:fs";
+import { join } from "node:path";
 
 let conf = {
   host: "127.0.0.1",
@@ -9,15 +9,16 @@ let conf = {
   password: "pass",
   database: "db0",
 };
-const confPath = path.join(process.cwd(), "./conf.json");
-if (fs.existsSync(confPath)) {
-  const conf2 = JSON.parse(fs.readFileSync(confPath, { encoding: "utf-8" }));
+
+const confPath = join(process.cwd(), "./conf.json");
+if (existsSync(confPath)) {
+  const conf2 = JSON.parse(readFileSync(confPath, { encoding: "utf-8" }));
   conf = { ...conf, ...conf2 };
 } else {
-  console.warn(`[server] ${path.join(process.cwd(), "./conf.json")} not found`);
+  console.warn(`[server] ${join(process.cwd(), "./conf.json")} not found`);
 }
 
-const pool = mysql.createPool({
+const pool = createPool({
   ...conf,
   multipleStatements: true,
   charset: "utf8mb4",

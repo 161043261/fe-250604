@@ -1,7 +1,4 @@
-//
-// Reviewed 2025/3/29
-//
-import crypto, { randomUUID } from "node:crypto";
+import { createHash, randomUUID } from "node:crypto";
 // import { promises as fs } from "node:fs";
 import jwt from "jsonwebtoken";
 import { Redis } from "ioredis";
@@ -45,8 +42,7 @@ export async function login(req, res) {
     //! 解盐
     const { id, password: saltedPwd, username, avatar, signature } = userWraps[0];
     const [salt, encodedPwd] = saltedPwd.split("$");
-    const encodedPwd2 = crypto
-      .createHash("md5")
+    const encodedPwd2 = createHash("md5")
       .update(salt + password)
       .digest("hex");
     if (encodedPwd !== encodedPwd2) {
@@ -111,8 +107,7 @@ export async function register(req, res) {
 
     //! 加盐
     const salt = randomUUID().toString().replaceAll("-", "");
-    const encodedPwd = crypto
-      .createHash("md5")
+    const encodedPwd = createHash("md5")
       .update(salt + password)
       .digest("hex");
     const saltedPwd = salt + "$" + encodedPwd;
@@ -162,8 +157,7 @@ export async function updatePwd(req, res) {
       return resErr(res, UserState.UserNotRegistered);
     }
     const salt = emailPwdWraps[0].password.split("$")[0];
-    const encodedPwd = crypto
-      .createHash("md5")
+    const encodedPwd = createHash("md5")
       .update(salt + password)
       .digest("hex");
     const saltedPwd = salt + "$" + encodedPwd;

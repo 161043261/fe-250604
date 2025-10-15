@@ -1,6 +1,3 @@
-//
-// Reviewed 2025/3/29
-//
 import { v4 as uuid } from "uuid";
 import { BaseState, GroupState } from "../utils/state.js";
 import { resOk, resErr } from "../utils/res.js";

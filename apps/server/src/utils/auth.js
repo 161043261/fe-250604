@@ -1,4 +1,4 @@
-import jwt from "jsonwebtoken";
+import { verify } from "jsonwebtoken";
 import { resErr } from "./res.js";
 import { BaseState } from "./state.js";
 // import crypto from "node:crypto";
@@ -17,7 +17,7 @@ export default function auth(req, res, next) {
     return resErr(res, BaseState.TokenErr);
   }
 
-  jwt.verify(token, secretKey, (err, decoded) => {
+  verify(token, secretKey, (err, decoded) => {
     if (err) {
       return resErr(res, BaseState.TokenErr);
     } else {
