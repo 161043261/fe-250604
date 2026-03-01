@@ -1,0 +1,50 @@
+{
+  "name": "@fe-250604/server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "compile": "rm -rf ./dist && tsc",
+    "build": "rm -rf ./dist && rollup -c",
+    "dev": "pnpm compile && node ./dist/app.js",
+    "start": "pnpm build && node ./dist/index.js",
+    "lint": "eslint . --fix",
+    "format": "prettier --write ./"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.6.5",
+  "dependencies": {
+    "@koa/bodyparser": "^6.1.0",
+    "@koa/multer": "^3.1.0",
+    "@koa/router": "^13.1.1",
+    "ioredis": "^5.9.3",
+    "jsonwebtoken": "^9.0.3",
+    "koa": "^2.16.3",
+    "koa-static": "^5.0.0",
+    "multer": "^2.0.2",
+    "mysql2": "~3.15.3",
+    "uuid": "^11.1.0",
+    "ws": "^8.19.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.3",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-typescript": "^12.3.0",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/koa": "^2.15.0",
+    "@types/koa-static": "^4.0.4",
+    "@types/koa__multer": "^2.0.8",
+    "@types/koa__router": "^12.0.5",
+    "@types/node": "^22.19.11",
+    "@types/ws": "^8.18.1",
+    "eslint": "^9.39.3",
+    "globals": "^16.5.0",
+    "prettier": "^3.8.1",
+    "rollup": "^4.59.0",
+    "tslib": "^2.8.1",
+    "typescript": "^5.9.3"
+  },
+  "type": "module"
+}

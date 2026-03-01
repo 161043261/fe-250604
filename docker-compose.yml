@@ -1,0 +1,26 @@
+services:
+  # docker-compose up -d mysql
+  mysql:
+    image: mysql:latest
+    # command: --mysql-native-password=ON
+    container_name: mysql
+    hostname: mysql
+    ports:
+      - "3306:3306"
+    privileged: true
+    restart: on-failure
+    environment:
+      MYSQL_DATABASE: db0
+      MYSQL_USER: whoami
+      MYSQL_PASSWORD: pass
+      MYSQL_RANDOM_ROOT_PASSWORD: yes
+      TZ: Asia/Shanghai
+  # docker-compose down mysql -v
+
+  # docker-compose up -d redis
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    restart: always
+  # docker-compose down redis -v
