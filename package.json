@@ -1,0 +1,20 @@
+{
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  },
+  "scripts": {
+    "dev:client": "pnpm --filter client dev2",
+    "dev:server": "pnpm --filter server dev",
+    "dev": "concurrently \"pnpm dev:client\" \"pnpm dev:server\"",
+    "format:client": "pnpm --filter client format",
+    "format:server": "pnpm --filter server format",
+    "format": "concurrently \"pnpm format:client\" \"pnpm format:server\"",
+    "lint:client": "pnpm --filter client lint",
+    "lint:server": "pnpm --filter server lint",
+    "lint": "concurrently \"pnpm lint:client\" \"pnpm lint:server\"",
+    "build": "concurrently \"pnpm build:client\" \"pnpm build:server\"",
+    "build:client": "pnpm --filter client build",
+    "build:server": "pnpm --filter server build",
+    "docker": "echo \"drop database if exists fe_250604; create database fe_250604;\" | docker exec -i mysql mysql -uroot -ppass"
+  }
+}

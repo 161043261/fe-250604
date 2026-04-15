@@ -1,0 +1,42 @@
+@mixin glassContainer($blurVal) {
+  // position: relative; // 父元素相对定位, 参考点: 原位置
+  z-index: 1;
+  &::before {
+    content: '';
+    position: absolute; // 子元素绝对定位, 参考点: 包含块
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.1);
+    -webkit-backdrop-filter: blur($blurVal);
+    backdrop-filter: blur($blurVal);
+    z-index: -1;
+    border-radius: 24px;
+  }
+}
+
+:root {
+  --color-theme: #f1f8e9;
+  --color-theme2: #dcedc8;
+  --color-theme3: #c5e1a5;
+  --color-theme4: #aed581;
+  --color-theme5: #9ccc65;
+  --color-theme6: #8bc34a;
+  --color-theme7: #7cb342;
+  --color-theme8: #689f38;
+  --color-theme9: #558b2f;
+  --color-theme10: #33691e;
+  --color-theme11: #ccff90;
+  --color-theme12: #b2ff59;
+  --color-theme13: #76ff03;
+  --color-theme14: #64dd17;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.ant-tree-switcher-noop {
+  display: none;
+}
