@@ -8,7 +8,10 @@ import { resOk, resErr } from "../utils/res.js";
 import type { AppContext, ChatMessage, MsgStatRecord } from "../types.js";
 
 async function updateMsgStats(roomKey: string): Promise<void> {
-  const msgStat = await db<MsgStatRecord>("msg_stats").select("*").where("room_key", roomKey).first();
+  const msgStat = await db<MsgStatRecord>("msg_stats")
+    .select("*")
+    .where("room_key", roomKey)
+    .first();
   if (!msgStat) {
     await db("msg_stats").insert({ room_key: roomKey, total: 0 });
   }
@@ -40,10 +43,7 @@ async function writeAndSend(
   } else {
     writeMsg.state = 0;
   }
-  await Promise.all([
-    db("messages").insert(camel2snake(writeMsg)),
-    updateMsgStats(roomKey),
-  ]);
+  await Promise.all([db("messages").insert(camel2snake(writeMsg)), updateMsgStats(roomKey)]);
   sendMsg.createdAt = new Date().toLocaleString("zh-CN", { timeZone: "Asia/Shanghai" });
   sendMsg.fileSize = fmtBytes(writeMsg.file_size);
   for (const receiverId in global.__chat_rooms__[roomKey]) {
@@ -196,11 +196,7 @@ export async function connChat(ws: WebSocket, url: string): Promise<void> {
       rawHistoryMsgList = await db<RawHistoryMsg>("messages as m")
         .leftJoin("users as u", "u.id", "m.sender_id")
         .leftJoin("group_members as gm", function () {
-          this.on("gm.user_id", "=", "u.id").andOn(
-            "gm.group_id",
-            "=",
-            db.raw("?", [Number(id)]),
-          );
+          this.on("gm.user_id", "=", "u.id").andOn("gm.group_id", "=", db.raw("?", [Number(id)]));
         })
         .where("m.room_key", roomKey)
         .andWhere("m.type", "group")

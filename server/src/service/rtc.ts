@@ -29,10 +29,7 @@ async function findFriendByEmail(
     const friendWraps = await db<FriendRecord>("friends")
       .select("*")
       .where("email", friendEmail)
-      .whereIn(
-        "tag_id",
-        db("tags").select("id").where("user_email", selfEmail),
-      );
+      .whereIn("tag_id", db("tags").select("id").where("user_email", selfEmail));
     return friendWraps.map((item) => snack2camel(item));
   } catch (err) {
     console.error(err);

@@ -5,8 +5,9 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "rollup -c ./rollup.config.js",
+    "build:tsup": "tsup --config ./tsup.config.ts",
     "dev": "rollup -c ./rollup.config.js -w",
-    "dev2": "concurrently \"rollup -c -w\" \"node ./dist/index.js --watch ./src\"",
+    "dev:watch": "concurrently \"rollup -c -w\" \"node ./dist/index.js --watch ./src\"",
     "lint": "eslint . --fix",
     "format": "prettier --write ./"
   },
@@ -46,6 +47,7 @@
     "globals": "^16.5.0",
     "prettier": "^3.8.1",
     "rollup": "^4.60.1",
+    "tsup": "^8.5.0",
     "tslib": "^2.8.1",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.57.2"

@@ -142,11 +142,7 @@ async function initSchema(): Promise<void> {
     table.integer("file_size").nullable().defaultTo(0);
     table.integer("state").notNullable().defaultTo(0);
     table.timestamp("created_at").defaultTo(db.fn.now());
-    table
-      .foreign("sender_id")
-      .references("users.id")
-      .onDelete("CASCADE")
-      .onUpdate("CASCADE");
+    table.foreign("sender_id").references("users.id").onDelete("CASCADE").onUpdate("CASCADE");
   });
 
   await ensureTable("msg_stats", (table) => {
